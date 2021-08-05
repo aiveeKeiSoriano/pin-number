@@ -1,0 +1,105 @@
+
+$background: rgb(196,69,105);
+$card-bg: white;
+$value-bg: rgb(192, 192, 192);
+$border: rgb(192, 192, 192);
+$focus-bg: rgb(231, 231, 231);
+$btn-bg: rgb(238, 238, 238);
+
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin box {
+    height: 100%;
+    width: 60px;
+    border: 3px solid $border;
+    border-right: 1.5px solid $border;
+    border-left: 1.5px solid $border;
+    font-size: 2rem;
+
+    &:first-child, &:last-child {
+        border-right: 3px solid $border;
+        border-left: 3px solid $border;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+#root {
+    @include center;
+    width: 100vw;
+    height: 100vh;
+    background-color: $background
+}
+
+.App {
+    @include center;
+    background-color: $card-bg;
+    width: 800px;
+    height: 400px;
+    flex-direction: column;
+    gap: 2em;
+    border-radius: 5px;
+}
+
+.values {
+    height: 4em;
+    gap: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.group {
+    display: flex;
+    height: 100%;
+}
+
+.dash {
+    width: 30px;
+    height: 5px;
+    background-color: $value-bg;
+}
+
+.fixed {
+    @include center;
+    @include box;
+}   
+
+input {
+    @include center;
+    @include box;
+    text-align: center;
+
+    &:focus {
+        outline: none;
+        background-color: $focus-bg;
+    }
+}
+
+button {
+    padding: .6em 1.2em;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    background-color: $btn-bg;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $border;
+    }
+}
