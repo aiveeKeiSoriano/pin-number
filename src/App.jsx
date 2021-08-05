@@ -1,12 +1,11 @@
-import { useEffect } from "react";
-import { useRef, useState } from "react";
+
+import { useState } from "react";
 
 function App() {
 
   let [values, setValues] = useState(new Array(6).fill(null))
 
   let last = values.indexOf(null)
-  let ref = useRef()
 
   let next = (e) => {
     let regex = /\d/
@@ -33,13 +32,25 @@ function App() {
     }
   }
 
+  let value = (i) => i === last ? <input type="text" onKeyDown={back} autoFocus onChange={next} maxLength="1" />
+  : last === -1 && i === 5 ? <input type="text" onKeyDown={back} autoFocus onChange={next} maxLength="1" />
+    : <div className="fixed">{values[i]}</div>
+
   return (
     <div className="App">
       <h1>Enter code:</h1>
       <div className="values">
-        {values.map((el, i) => i === last ? <input type="text" onKeyDown={back} autoFocus onChange={next} maxLength="1" />
-          : last === -1 && i === 5 ? <input type="text" onKeyDown={back} autoFocus onChange={next} maxLength="1" />
-            : <div className="fixed">{el}</div>)}
+        <div className="group">
+          {value(0)}
+          {value(1)}
+          {value(2)}
+        </div>
+        <div className="dash"></div>
+        <div className="group">
+          {value(3)}
+          {value(4)}
+          {value(5)}
+        </div>
       </div>
       <button>Submit</button>
     </div>
